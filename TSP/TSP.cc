@@ -28,3 +28,14 @@ void TSP::printCities() {
     std::cout << city << std::endl;
   }
 }
+
+int TSP::searchTripPrice(const std::string &cityA, const std::string &cityB) {
+  for (auto trip : trips_) {
+    if ((trip.getCityA() == cityA && trip.getCityB() == cityB) || (trip.getCityA() == cityB && trip.getCityB() == cityA)) {
+      return trip.getTripPrice();
+    } else if (cityA == cityB) {
+      return 0;
+    }
+  }
+  return -1;
+}

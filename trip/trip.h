@@ -10,6 +10,7 @@ class Trip {
    std::string getCityA() const { return cityA_; }
    std::string getCityB() const { return cityB_; }
    int getTripPrice() const { return tripPrice_; }
+   
   private:
    std::string cityA_;
    std::string cityB_;

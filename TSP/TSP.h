@@ -14,11 +14,13 @@ class TSP {
    virtual void execute() = 0;
    void printTrips();
    void printCities();
+   int searchTripPrice(const std::string &cityA, const std::string &cityB);
+   std::set<std::string> cities_;
+
 
   protected:
    int numberOfCities_;
    std::vector<Trip> trips_;
-   std::set<std::string> cities_;
    std::set<std::string> visitedCities_;
 };
 
