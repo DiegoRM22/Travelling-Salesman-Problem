@@ -1,11 +1,18 @@
 
 #include "TSP-greedy.h"
 
+/**
+ * Execute the greedy algorithm to solve the TSP
+*/
 void TSPGreedy::execute() {
   greedy();
   printBestTrip();
 }
 
+/**
+ * Greedy algorithm to solve the TSP
+ * @param startCity The city to start the trip
+*/
 void TSPGreedy::greedy(const std::string &startCity) {
   std::string currentCity = startCity;
   visitedCities_.insert(currentCity);
@@ -32,6 +39,9 @@ void TSPGreedy::greedy(const std::string &startCity) {
   currentRoute_.push_back(startCity);
 }
 
+/**
+ * Print the best trip found by the greedy algorithm
+*/
 void TSPGreedy::printBestTrip() {
   std::cout << "Best trip: ";
   for (const auto &city : currentRoute_) {

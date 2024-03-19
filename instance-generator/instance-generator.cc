@@ -22,6 +22,9 @@ std::string getInstanceFileName(int numberOfCities, int instanceNumber) {
   return instanceFilePath;
 }
 
+/**
+ * @brief Constructor de la clase InstanceGenerator
+*/
 InstanceGenerator::InstanceGenerator(int numberOfCities, int maxTripPrice, int numberOfInstances) {
   srand(time(NULL)); // Inicializa la semilla para generar números aleatorios
 

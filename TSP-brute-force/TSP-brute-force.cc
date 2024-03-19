@@ -3,12 +3,19 @@
 #include "TSP-brute-force.h"
 #include "../trip/trip.h"
 
+/**
+ * @brief Constructor de la clase TSPBruteForce
+*/
 void TSPBruteForce::execute() {
   bruteForce();
   bestTripRoute_.push_back(bestTripRoute_[0]); // Agregar la ciudad de origen al final de la ruta
   printBestTrip();
 }
 
+/**
+ * @brief Método que implementa el algoritmo de fuerza bruta para resolver el problema del TSP
+ * @param startCity Ciudad de inicio para el recorrido
+*/
 void TSPBruteForce::bruteForce(const std::string &startCity) {
   // Insertar la ciudad actual en el conjunto de ciudades visitadas
   visitedCities_.insert(startCity);
@@ -40,6 +47,9 @@ void TSPBruteForce::bruteForce(const std::string &startCity) {
 }
 
 
+/**
+ * @brief Método que imprime la mejor ruta encontrada por el algoritmo de fuerza bruta
+*/
 void TSPBruteForce::printBestTrip() {
   std::cout << "Best trip: ";
   for (const auto &city : bestTripRoute_) {
@@ -48,6 +58,12 @@ void TSPBruteForce::printBestTrip() {
   std::cout << "with a price of " << bestTripPrice_ << std::endl;
 }
 
+/**
+ * @brief Método que calcula la distancia total de una ruta
+ * @param route Ruta a calcular
+ * @param trips Lista de viajes disponibles
+ * @return La distancia total de la ruta
+*/
 int TSPBruteForce::calculateTotalDistance(const std::vector<std::string>& route, const std::vector<Trip>& trips) {
   int totalDistance = 0;
   for (int i = 0; i < route.size() - 1; i++) {
