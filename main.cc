@@ -36,7 +36,7 @@ void executeWithTimeout(T& algorithm, std::chrono::minutes timeout, std::atomic_
 }
 
 int main() {
-  const std::chrono::minutes kTimeLimit = std::chrono::minutes(1);
+  const std::chrono::minutes kTimeLimit = std::chrono::minutes(10);
   std::vector<std::string> generatedInstanceFiles;
   InstanceGenerator instanceGenerator(4, 100, 1);
   generatedInstanceFiles.push_back(instanceGenerator.getGeneratedInstanceFile());
