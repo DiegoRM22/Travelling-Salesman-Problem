@@ -22,7 +22,6 @@ void TSPDynamicProgramming::execute() {
     edges_[cityB][cityB] = 0;
   }
 
-  
   std::string startCity = "A";
   int startIndex = std::distance(cities_.begin(), cities_.find(startCity));
   std::pair<int, std::vector<int>> result = solve(startIndex);
@@ -31,12 +30,11 @@ void TSPDynamicProgramming::execute() {
   for (const auto &index : routeIndexes) {
     route_.push_back(*std::next(cities_.begin(), index));
   }
-  std::cout << "Route: ";
-  for (const auto &city : route_) {
-    std::cout << city << " ";
-  }
-  std::cout << std::endl;
-
+  // std::cout << "Route: ";
+  // for (const auto &city : route_) {
+  //   std::cout << city << " ";
+  // }
+  // std::cout << std::endl;
 }
 
 /**
@@ -54,18 +52,13 @@ std::pair<int, std::vector<int>> TSPDynamicProgramming::solve(int startIndex) {
 
   // Se itera sobre todos los subconjuntos de ciudades visitadas, comenzando desde el conjunto vacío.
   for(unsigned int explored_set = 0; explored_set < (1U << numberOfCities_); explored_set++) {
-    // Se itera sobre el último vértice en el conjunto actual de ciudades visitadas.
     for(int last_vertex = 0; last_vertex < numberOfCities_; last_vertex++)
-      // Se verifica si este estado es válido, es decir, si ya se ha calculado el costo mínimo para este conjunto de ciudades.
       if(min_path_[explored_set][last_vertex] != std::numeric_limits<int>::max()) {
-        // Se considera cada vértice como un posible próximo vértice a visitar.
         for(int next_vertex = 0; next_vertex < numberOfCities_; next_vertex++)
-          // Se verifica si hay un borde entre el último vértice visitado y el próximo vértice considerado, y si el próximo vértice no ha sido visitado antes.
           if(
             edges_[last_vertex][next_vertex] != std::numeric_limits<int>::max() &&  // El borde existe
             (explored_set & (1U << next_vertex)) == 0  // No volvemos a un vértice ya explorado
           ) {
-            // Se calcula el costo del recorrido desde el último vértice hasta el próximo vértice y se actualiza el costo mínimo si se encuentra un camino más corto.
             const unsigned int next_set = explored_set + (1U << next_vertex);
             const int next_cost = min_path_[explored_set][last_vertex] + edges_[last_vertex][next_vertex];
             if(next_cost < min_path_[next_set][next_vertex]) {
@@ -102,9 +95,9 @@ std::pair<int, std::vector<int>> TSPDynamicProgramming::solve(int startIndex) {
  * @param min_distance El costo mínimo del ciclo.
  */
 void TSPDynamicProgramming::print_result(int min_distance) {
-  std::cout << "Best trip: ";
-  for (const auto &city : route_) {
-    std::cout << city << " ";
-  }
-  std::cout << "with a price of " << min_distance << std::endl;
+  // std::cout << "Best trip: ";
+  // for (const auto &city : route_) {
+  //   std::cout << city << " ";
+  // }
+  std::cout << min_distance << std::endl;
 }

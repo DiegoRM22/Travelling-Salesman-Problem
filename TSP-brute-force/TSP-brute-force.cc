@@ -51,11 +51,11 @@ void TSPBruteForce::bruteForce(const std::string &startCity) {
  * @brief Método que imprime la mejor ruta encontrada por el algoritmo de fuerza bruta
 */
 void TSPBruteForce::printBestTrip() {
-  std::cout << "Best trip: ";
-  for (const auto &city : bestTripRoute_) {
-    std::cout << city << " ";
-  }
-  std::cout << "with a price of " << bestTripPrice_ << std::endl;
+  // std::cout << "Best trip: ";
+  // for (const auto &city : bestTripRoute_) {
+  //   std::cout << city << " ";
+  // }
+  std::cout << bestTripPrice_ << std::endl;
 }
 
 /**

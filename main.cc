@@ -44,6 +44,10 @@ int main() {
   generatedInstanceFiles.push_back(instanceGenerator2.getGeneratedInstanceFile());
   InstanceGenerator instanceGenerator3(10, 100, 1);
   generatedInstanceFiles.push_back(instanceGenerator3.getGeneratedInstanceFile());
+  // medias de tiempo
+  std::chrono::duration<double> average_brute_force;
+  std::chrono::duration<double> average_greedy;
+  std::chrono::duration<double> average_dynamic_programming;
 
   for (auto inputFileName : generatedInstanceFiles) {
     std::cout << "Archivo de entrada: " << inputFileName << std::endl;
@@ -54,6 +58,7 @@ int main() {
     executeWithTimeout(tspBruteForce, kTimeLimit, finished_brute_force);
     auto end_brute_force = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_brute_force = end_brute_force - start_brute_force;
+    average_brute_force += elapsed_brute_force;
     if (finished_brute_force) {
       std::cout << "Tiempo de ejecución de fuerza bruta: " << elapsed_brute_force.count() << " segundos\n";
     } else {
@@ -70,6 +75,7 @@ int main() {
     executeWithTimeout(tspGreedy, kTimeLimit, finished_greedy);
     auto end_greedy = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_greedy = end_greedy - start_greedy;
+    average_greedy += elapsed_greedy;
     if (finished_greedy) {
       std::cout << "Tiempo de ejecución de voraz: " << elapsed_greedy.count() << " segundos\n";
     } else {
@@ -86,14 +92,19 @@ int main() {
     executeWithTimeout(tspDynamicProgramming, kTimeLimit, finished_dynamic_programming);
     auto end_dynamic_programming = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_dynamic_programming = end_dynamic_programming - start_dynamic_programming;
+    average_dynamic_programming += elapsed_dynamic_programming;
     if (finished_dynamic_programming) {
       std::cout << "Tiempo de ejecución de programación dinámica: " << elapsed_dynamic_programming.count() << " segundos\n";
     } else {
       std::cout << "Tiempo de ejecución de programación dinámica: EXCESIVO\n";
     }
 
-    std::cout << "----------------------------------------\n";
+    std::cout << "----------------------------------------\n\n\n";
   }
+
+  std::cout << "Tiempo promedio de ejecución de fuerza bruta: " << average_brute_force.count() / generatedInstanceFiles.size() << " segundos\n";
+  std::cout << "Tiempo promedio de ejecución de voraz: " << average_greedy.count() / generatedInstanceFiles.size() << " segundos\n";
+  std::cout << "Tiempo promedio de ejecución de programación dinámica: " << average_dynamic_programming.count() / generatedInstanceFiles.size() << " segundos\n";
   
   return 0;
 }
