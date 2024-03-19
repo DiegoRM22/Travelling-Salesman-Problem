@@ -12,7 +12,7 @@ public:
     TSPDynamicProgramming(std::string& file_name) : TSP(file_name) {}
     ~TSPDynamicProgramming() {}
 
-    std::pair<int, std::vector<int>> find_travelling_salesman_cycle();
+    std::pair<int, std::vector<int>> solve(int startIndex = 0);
 
 
     void execute() override;
@@ -23,6 +23,8 @@ private:
     std::vector<std::string> route_;
     std::vector<std::vector<int>> min_path_;
     int min_distance_;
+    std::vector<std::vector<int>> min_path_last_vertex_;
+    std::vector<std::vector<int>> edges_;
 };
 
 

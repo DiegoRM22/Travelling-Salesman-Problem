@@ -11,7 +11,7 @@ class TSPBruteForce : public TSP {
  public:
   TSPBruteForce(std::string inputFileName) : TSP(inputFileName) {}
   void execute() override;
-  void bruteForce(const std::string &startCity = "B");
+  void bruteForce(const std::string &startCity = "A");
   void printBestTrip();
   int calculateTotalDistance(const std::vector<std::string>& route, const std::vector<Trip>& trips);
   int bestTripPrice_ = INT_MAX;

@@ -11,7 +11,7 @@ class TSPGreedy : public TSP {
  public:
   TSPGreedy(std::string inputFileName) : TSP(inputFileName) {}
   void execute() override;
-  void greedy(const std::string &startCity = "B");
+  void greedy(const std::string &startCity = "A");
   void printBestTrip();
   int bestTripPrice_ = INT_MAX;
   private:

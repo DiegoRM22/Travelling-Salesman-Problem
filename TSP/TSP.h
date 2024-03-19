@@ -18,6 +18,7 @@ class TSP {
    std::set<std::string> cities_;
 
 
+
   protected:
    int numberOfCities_;
    std::vector<Trip> trips_;
